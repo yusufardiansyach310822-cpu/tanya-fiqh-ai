@@ -1,0 +1,17 @@
+{
+  "name": "tanya-fiqh-sunnah",
+  "version": "1.0.0",
+  "description": "Website tanya jawab fiqh berdalil (hybrid: basis data terverifikasi + AI live)",
+  "type": "module",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node --env-file=.env server.js"
+  },
+  "engines": {
+    "node": ">=20.6"
+  },
+  "dependencies": {
+    "express": "^4.19.2"
+  }
+}

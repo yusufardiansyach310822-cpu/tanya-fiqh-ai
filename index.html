@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Tanya Fiqh Sunnah – Rujukan Al-Qur'an & Sunnah</title>
+<link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --green:#0f7a4d; --green-d:#0a5a39; --green-l:#e6f6ee;
+  --gold:#e0a21b; --gold-l:#fff4d6; --sky:#bfe6ff; --cream:#fffaf0;
+  --ink:#1d2b24; --muted:#5d6f66; --card:#ffffff; --danger:#b4432b;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:'Poppins',system-ui,sans-serif;color:var(--ink);background:var(--cream);line-height:1.65}
+.ar{font-family:'Amiri',serif;direction:rtl;text-align:right;font-size:1.55rem;line-height:2.1;color:#0a3d28}
+
+/* HERO */
+.hero{position:relative;overflow:hidden;text-align:center;padding:56px 18px 110px;
+  background:linear-gradient(180deg,#8fd3ff 0%,#cfeeff 38%,#fff1c9 72%,#fffaf0 100%)}
+.rays{position:absolute;left:50%;top:150px;width:900px;height:900px;margin-left:-450px;opacity:.55;
+  background:repeating-conic-gradient(from 0deg,rgba(255,215,100,.55) 0deg 6deg,transparent 6deg 16deg);
+  border-radius:50%;animation:spin 90s linear infinite;
+  -webkit-mask-image:radial-gradient(circle,#000 0%,transparent 68%);mask-image:radial-gradient(circle,#000 0%,transparent 68%)}
+@keyframes spin{to{transform:rotate(360deg)}}
+.sun{position:relative;width:110px;height:110px;margin:0 auto 14px;border-radius:50%;
+  background:radial-gradient(circle at 35% 35%,#fff7c2,#ffd24d 55%,#f2a20f);
+  box-shadow:0 0 0 14px rgba(255,210,77,.25),0 0 0 32px rgba(255,210,77,.15),0 0 70px 20px rgba(255,200,60,.55);animation:pulse 4s ease-in-out infinite}
+@keyframes pulse{50%{transform:scale(1.05)}}
+.hero>*{position:relative}
+.bismillah{font-family:'Amiri',serif;font-size:2.1rem;color:var(--green-d);direction:rtl}
+.hero h1{font-size:clamp(1.7rem,6vw,2.7rem);font-weight:700;color:var(--green-d);margin:6px 0 4px;line-height:1.25}
+.hero h1 span{color:#c98a00}
+.salam{font-weight:600;color:#7a5600;margin-bottom:6px}
+.hero p.lead{max-width:640px;margin:0 auto;color:#35493f}
+.badges{display:flex;flex-wrap:wrap;justify-content:center;gap:8px;margin-top:16px}
+.badge{background:rgba(255,255,255,.8);border:1px solid #f0d58a;border-radius:999px;padding:5px 13px;font-size:.78rem;font-weight:600;color:var(--green-d)}
+.wave{position:absolute;bottom:-1px;left:0;width:100%;height:70px}
+
+main{max-width:880px;margin:0 auto;padding:0 16px 60px}
+
+/* ASK */
+.ask{margin-top:-62px;position:relative;background:var(--card);border-radius:22px;padding:22px;
+  box-shadow:0 14px 40px rgba(15,122,77,.18);border:2px solid #f3dfa0}
+.ask h2{font-size:1.15rem;color:var(--green-d);margin-bottom:10px}
+.row{display:flex;gap:10px;flex-wrap:wrap}
+.row input{flex:1;min-width:200px;padding:14px 16px;border-radius:14px;border:2px solid #d8e9df;font:inherit;outline:none;background:#fbfffd}
+.row input:focus{border-color:var(--green);box-shadow:0 0 0 4px rgba(15,122,77,.12)}
+.btn{background:linear-gradient(135deg,var(--green),#17a56a);color:#fff;border:0;border-radius:14px;padding:14px 24px;font:inherit;font-weight:600;cursor:pointer;box-shadow:0 6px 16px rgba(15,122,77,.3);transition:.2s}
+.btn:hover{transform:translateY(-2px)}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}
+.chip{background:var(--gold-l);border:1px solid #f0d58a;color:#7a5600;border-radius:999px;padding:6px 13px;font-size:.8rem;cursor:pointer;font-family:inherit;transition:.2s}
+.chip:hover{background:var(--gold);color:#fff}
+
+/* CONCEPT */
+.sec-title{text-align:center;margin:44px 0 18px;font-size:1.35rem;color:var(--green-d)}
+.sec-title small{display:block;color:var(--muted);font-weight:400;font-size:.85rem}
+.grid3{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:14px}
+.cc{background:var(--card);border-radius:18px;padding:18px;border-top:5px solid var(--gold);box-shadow:0 4px 14px rgba(0,0,0,.06)}
+.cc .ic{font-size:1.8rem}
+.cc h3{font-size:1rem;color:var(--green-d);margin:4px 0}
+.cc p{font-size:.88rem;color:var(--muted)}
+
+/* ANSWER */
+#answer{margin-top:28px}
+.ans{background:var(--card);border-radius:22px;overflow:hidden;box-shadow:0 10px 30px rgba(0,0,0,.08);animation:rise .5s ease}
+@keyframes rise{from{opacity:0;transform:translateY(16px)}}
+.ans-h{background:linear-gradient(135deg,var(--green-d),var(--green));color:#fff;padding:18px 22px}
+.ans-h small{opacity:.85}
+.ans-h h2{font-size:1.2rem}
+.ans-b{padding:20px 22px}
+.short{background:var(--green-l);border-right:0;border-left:5px solid var(--green);padding:14px 16px;border-radius:12px;font-weight:500;margin-bottom:18px}
+.lbl{font-weight:700;color:var(--green-d);margin:20px 0 8px;display:flex;align-items:center;gap:8px}
+.lbl::after{content:"";flex:1;height:2px;background:linear-gradient(90deg,#f0d58a,transparent)}
+.dalil{border:1px solid #e9dfbd;background:#fffdf5;border-radius:14px;padding:14px 16px;margin-bottom:12px}
+.tag{display:inline-block;font-size:.7rem;font-weight:700;background:var(--green);color:#fff;border-radius:6px;padding:2px 8px;margin-bottom:6px}
+.tag.h{background:#c98a00}
+.dalil .tr{font-size:.93rem}
+.dalil .ref{margin-top:8px;font-size:.8rem;color:#7a5600;font-weight:600}
+ul.pts{padding-left:20px;font-size:.93rem}
+ul.pts li{margin-bottom:6px}
+.khilaf{background:#fff4ee;border-left:5px solid #e08a4b;padding:12px 15px;border-radius:12px;font-size:.9rem}
+.links{display:flex;flex-wrap:wrap;gap:8px}
+.links a{font-size:.8rem;text-decoration:none;background:var(--green-l);color:var(--green-d);padding:6px 12px;border-radius:999px;font-weight:600;border:1px solid #bfe3cf}
+.links a:hover{background:var(--green);color:#fff}
+.warn{margin-top:18px;font-size:.78rem;color:var(--muted);background:#f6f6f2;border-radius:10px;padding:10px 13px}
+.rel{margin-top:14px}
+.none{background:#fff;border:2px dashed #e0a21b;border-radius:22px;padding:24px;text-align:center;animation:rise .5s ease}
+.none h2{color:#9a6a00;margin-bottom:8px}
+.none p{color:var(--muted);font-size:.93rem;margin-bottom:12px}
+
+/* AI */
+.btn.ai{background:linear-gradient(135deg,#c98a00,#e0a21b);box-shadow:0 6px 16px rgba(201,138,0,.3)}
+.btn:disabled{opacity:.6;cursor:wait}
+.aiwarn{background:#fff4d6;border-left:5px solid #e0a21b;border-radius:12px;padding:11px 14px;font-size:.85rem;margin-bottom:14px;color:#6b4b00}
+.aibody p{margin-bottom:10px;font-size:.95rem}
+.aibody .lbl{margin-top:18px}
+.aibody .dalil{font-size:.92rem}
+.aibody ul.pts{margin-bottom:8px}
+.dots{color:var(--muted);font-style:italic;animation:blink 1.2s infinite}
+@keyframes blink{50%{opacity:.4}}
+.hint{font-size:.78rem;color:var(--muted);margin-top:10px}
+/* TOPICS */
+.topics{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:10px}
+.topic{background:#fff;border:1px solid #e3efe8;border-radius:14px;padding:12px 14px;cursor:pointer;font:inherit;font-size:.86rem;text-align:left;color:var(--ink);transition:.2s}
+.topic:hover{border-color:var(--green);background:var(--green-l);transform:translateY(-2px)}
+
+footer{background:var(--green-d);color:#d6efe2;text-align:center;padding:26px 16px;font-size:.82rem}
+footer b{color:#ffe08a}
+.print{display:none}
+@media print{.hero,.ask,.chips,.topics,.sec-title,footer,.grid3{display:none}}
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="rays"></div>
+  <div class="sun"></div>
+  <div class="bismillah">بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ</div>
+  <div class="salam">Assalamu'alaikum warahmatullahi wabarakatuh</div>
+  <h1>Tanya Fiqh <span>Sunnah</span></h1>
+  <p class="lead">Selamat datang, semoga Allah mudahkan kita memahami agama ini di atas ilmu. Tanyakan masalah fiqh Anda, dan jawabannya akan disertai <b>dalil Al-Qur'an, hadits yang shahih, serta rujukan</b> yang bisa dicek ulang.</p>
+  <div class="badges">
+    <span class="badge">📖 Al-Qur'an</span><span class="badge">✨ Hadits Shahih</span><span class="badge">🌿 Pemahaman Salafush Shalih</span><span class="badge">🔎 Rujukan Jelas</span>
+  </div>
+  <svg class="wave" viewBox="0 0 1440 80" preserveAspectRatio="none"><path fill="#fffaf0" d="M0,40 C240,90 480,0 720,30 C960,60 1200,90 1440,35 L1440,80 L0,80 Z"/></svg>
+</header>
+
+<main>
+  <section class="ask" id="ask">
+    <h2>🕌 Apa yang ingin Anda tanyakan?</h2>
+    <div class="row">
+      <input id="q" type="text" placeholder="Contoh: Bagaimana hukum qunut Subuh?" autocomplete="off">
+      <button class="btn" id="go">Cari Jawaban</button>
+      <button class="btn ai" id="goai" title="Tanyakan langsung ke AI">🤖 Tanya AI</button>
+    </div>
+    <div class="chips" id="chips"></div>
+    <div class="hint">Topik terverifikasi dijawab dari basis data. Pertanyaan lain dijawab AI (belum diverifikasi ulama). Pertanyaan lanjutan akan mengingat percakapan sebelumnya.</div>
+  </section>
+
+  <div id="answer"></div>
+
+  <h2 class="sec-title">Bagaimana Website Ini Bekerja?<small>Konsep singkat agar Anda tenang dan tidak salah paham</small></h2>
+  <div class="grid3">
+    <div class="cc"><div class="ic">📜</div><h3>Dalil Lebih Dulu</h3><p>Jawaban berpatokan pada Al-Qur'an dan sunnah yang shahih, dipahami sebagaimana pemahaman para sahabat dan salafush shalih.</p></div>
+    <div class="cc"><div class="ic">🚫</div><h3>Hadits Dhaif Tidak Dipakai</h3><p>Hadits lemah tidak dijadikan hujjah. Bila disebut, hanya untuk menjelaskan mengapa ia tidak dipakai.</p></div>
+    <div class="cc"><div class="ic">🤝</div><h3>Jujur Bila Belum Ada</h3><p>Jika suatu pertanyaan belum ada jawaban terverifikasi di sini, website tidak akan asal menjawab. Anda diarahkan ke rujukan terpercaya.</p></div>
+  </div>
+
+  <h2 class="sec-title">Topik yang Sudah Tersedia<small>Ketuk salah satu untuk langsung melihat jawabannya</small></h2>
+  <div class="topics" id="topics"></div>
+</main>
+
+<footer>
+  <p><b>Penting:</b> Website ini adalah rujukan awal, bukan fatwa. Ia bukan pengganti ulama dan ustadz. Periksa ulang nomor hadits dan penilaiannya melalui kitab, <i>Dorar.net</i>, atau situs hadits terpercaya, dan tanyakan kepada ahli ilmu untuk masalah pribadi.</p>
+  <p style="margin-top:8px">Jika menemukan kesalahan kutipan, mohon dikoreksi agar bisa diperbaiki. Wallahu a'lam.</p>
+</footer>
+
+<script>
+/* ===== BASIS DATA TERKURASI ===== */
+const DB=[
+{id:'qunut',title:'Hukum Qunut Subuh',cari:'qunut subuh',
+ kw:['qunut','kunut','subuh','nazilah','witir'],
+ short:'Qunut Subuh yang dilakukan rutin setiap hari tidak ada dalil shahih. Yang disyariatkan adalah <b>qunut nazilah</b> (saat kaum muslimin ditimpa musibah). Qunut dalam shalat witir boleh.',
+ dalil:[
+  {t:'h',id:'Abu Malik al-Asyja\'i berkata: "Aku bertanya kepada ayahku: Wahai ayah, engkau pernah shalat di belakang Rasulullah, Abu Bakar, Umar, Utsman, dan Ali di Kufah. Apakah mereka qunut (Subuh)?" Beliau menjawab: "Wahai anakku, itu perkara baru (muhdats)."',ref:'HR. At-Tirmidzi no. 402, An-Nasa\'i, dan Ibnu Majah; dishahihkan Al-Albani (Irwa\'ul Ghalil no. 435)'},
+  {t:'h',id:'Anas bin Malik: Nabi ﷺ qunut selama satu bulan mendoakan keburukan atas suku Ri\'l dan Dzakwan, kemudian beliau meninggalkannya.',ref:'HR. Al-Bukhari no. 1002 dan Muslim no. 677 (qunut nazilah)'},
+  {t:'h',id:'Hasan bin Ali: Rasulullah ﷺ mengajarkan kepadaku kalimat yang aku baca dalam (qunut) witir, yaitu "Allahummahdini fiman hadait...".',ref:'HR. Abu Dawud no. 1425, At-Tirmidzi no. 464; dishahihkan Al-Albani (Irwa\'ul Ghalil no. 429)'}],
+ rinci:['Qunut nazilah dilakukan setelah ruku\' pada rakaat terakhir shalat wajib ketika ada musibah, dan ditinggalkan ketika musibah berlalu.','Hadits yang menyatakan Nabi ﷺ terus qunut Subuh sampai wafat (riwayat Ahmad, Ad-Daruquthni) dinilai dhaif oleh para ulama hadits, sehingga tidak dijadikan dasar di sini.'],
+ khilaf:'Mazhab Syafi\'i menganjurkan qunut Subuh. Ini masalah ijtihadiyyah yang tidak boleh menjadi sebab perpecahan. Sebagian ulama menyatakan makmum yang imamnya qunut mengikuti dan mengaminkan demi menjaga persatuan. Tanyakan kepada ustadz setempat.',
+ buku:['Irwa\'ul Ghalil (Al-Albani)','Zadul Ma\'ad (Ibnul Qayyim)']},
+
+{id:'niat',title:'Melafazkan Niat (Ushalli...)',cari:'melafazkan niat shalat',
+ kw:['niat','lafaz','melafazkan','ushalli','usholli'],
+ short:'Niat tempatnya di hati. Tidak ada dalil shahih dari Nabi ﷺ maupun para sahabat yang mencontohkan melafazkan niat shalat dengan lisan.',
+ dalil:[
+  {t:'h',ar:'إِنَّمَا الْأَعْمَالُ بِالنِّيَّاتِ',id:'"Sesungguhnya amalan itu tergantung niatnya."',ref:'HR. Al-Bukhari no. 1 dan Muslim no. 1907'}],
+ rinci:['Niat adalah maksud dan tekad hati, sehingga cukup dengan hadirnya tekad itu untuk melakukan shalat tertentu.','Ibnul Qayyim menjelaskan dalam Zadul Ma\'ad bahwa Nabi ﷺ jika berdiri shalat langsung bertakbir dan tidak mengucapkan sesuatu sebelum takbir, serta tidak melafazkan niat.'],
+ khilaf:'Sebagian ulama mazhab membolehkan atau menganjurkan melafazkan niat untuk membantu hati. Namun karena tidak ada contoh dari Nabi ﷺ, yang lebih selamat adalah meninggalkannya.',
+ buku:['Zadul Ma\'ad (Ibnul Qayyim)']},
+
+{id:'tahlilan',title:'Tahlilan / Kumpul di Rumah Keluarga Mayit',cari:'tahlilan selamatan kematian',
+ kw:['tahlil','tahlilan','selamatan','kematian','mayit','hari ke','takziah','tujuh hari','yasinan'],
+ short:'Berkumpul di rumah keluarga mayit dan makan-makan di sana tidak dicontohkan para sahabat, bahkan mereka menganggapnya termasuk <i>niyahah</i> (meratap). Yang disunnahkan: menghibur keluarga mayit, mendoakan mayit, dan <b>membuatkan makanan untuk keluarga yang berduka</b>.',
+ dalil:[
+  {t:'h',id:'Jarir bin Abdillah: "Kami (para sahabat) memandang berkumpul di rumah keluarga mayit dan membuat makanan setelah penguburan termasuk niyahah."',ref:'HR. Ahmad 2/204 dan Ibnu Majah no. 1612; dishahihkan Al-Albani (Ahkamul Janaiz)'},
+  {t:'h',id:'Ketika datang kabar wafatnya Ja\'far, Nabi ﷺ bersabda: "Buatkanlah makanan untuk keluarga Ja\'far, karena telah datang kepada mereka sesuatu yang menyibukkan mereka."',ref:'HR. Abu Dawud no. 3132 dan At-Tirmidzi no. 998 (hasan)'},
+  {t:'h',id:'"Apabila manusia meninggal, terputuslah amalnya kecuali tiga: sedekah jariyah, ilmu yang bermanfaat, atau anak shalih yang mendoakannya."',ref:'HR. Muslim no. 1631'}],
+ rinci:['Mendoakan mayit, beristighfar untuknya, dan bersedekah atas namanya adalah amalan yang disyariatkan.','Penentuan hari-hari tertentu (3, 7, 40, 100, 1000) dengan acara khusus tidak memiliki dasar dari sunnah.'],
+ khilaf:'Sebagian ulama membolehkan berkumpul sebatas takziah tanpa ritual khusus dan tanpa memberatkan keluarga mayit. Nasihatilah dengan lembut dan tidak memutus silaturahmi.',
+ buku:['Ahkamul Janaiz (Al-Albani)']},
+
+{id:'maulid',title:'Perayaan Maulid Nabi',cari:'maulid nabi',
+ kw:['maulid','maulud','milad','perayaan','bidah','bid\'ah'],
+ short:'Perayaan maulid tidak dicontohkan Nabi ﷺ, para sahabat, dan generasi salaf. Cinta Nabi ﷺ dibuktikan dengan <b>mengikuti sunnahnya</b>, bukan dengan membuat acara baru dalam agama.',
+ dalil:[
+  {t:'h',ar:'مَنْ أَحْدَثَ فِي أَمْرِنَا هَذَا مَا لَيْسَ مِنْهُ فَهُوَ رَدٌّ',id:'"Barangsiapa mengada-adakan dalam urusan (agama) kami ini sesuatu yang bukan darinya, maka ia tertolak."',ref:'HR. Al-Bukhari no. 2697 dan Muslim no. 1718'},
+  {t:'q',id:'"Katakanlah: Jika kamu (benar-benar) mencintai Allah, maka ikutilah aku, niscaya Allah mencintaimu dan mengampuni dosa-dosamu."',ref:'QS. Ali Imran: 31'}],
+ rinci:['Tidak ada riwayat shahih bahwa Nabi ﷺ atau para sahabat merayakan hari kelahiran beliau, padahal kecintaan mereka kepada beliau paling besar.','Yang dianjurkan: mempelajari sirah, memperbanyak shalawat, dan menghidupkan sunnah di sepanjang tahun.'],
+ khilaf:'Sebagian ulama kontemporer membolehkannya sebagai sarana dakwah. Pendapat yang lebih kuat menurut ulama sunnah adalah tidak disyariatkan karena tidak ada contoh salaf.',
+ buku:['Al-I\'tisham (Asy-Syathibi)']},
+
+{id:'musik',title:'Hukum Musik dan Alat Musik',cari:'hukum musik',
+ kw:['musik','nyanyi','lagu','alat musik','gitar','bernyanyi'],
+ short:'Mayoritas ulama dan ulama sunnah memandang alat musik (<i>ma\'azif</i>) haram. Dalil utamanya hadits Al-Bukhari dan tafsir para sahabat atas "lahwal hadits".',
+ dalil:[
+  {t:'h',id:'Nabi ﷺ bersabda: "Sungguh akan ada dari umatku kaum yang menghalalkan zina, sutra, khamr, dan alat-alat musik."',ref:'HR. Al-Bukhari (mu\'allaq majzum, Kitabul Asyribah no. 5590), disambungkan sanadnya oleh ulama hadits'},
+  {t:'q',id:'"Di antara manusia ada yang membeli perkataan yang tidak berguna (lahwal hadits) untuk menyesatkan dari jalan Allah..."',ref:'QS. Luqman: 6. Ibnu Mas\'ud menafsirkannya dengan nyanyian'}],
+ rinci:['Rebana pada walimah pernikahan dan hari raya adalah pengecualian yang dibolehkan menurut dalil.','Syair yang baik isinya, tanpa alat musik, boleh didengar.'],
+ khilaf:'Sebagian ulama (misalnya Ibnu Hazm) membolehkan. Namun mayoritas ahli ilmu dari kalangan salaf mengharamkan, dan inilah pendapat yang dipegang di sini.',
+ buku:['Tahrim Alat Ath-Tharb (Al-Albani)']},
+
+{id:'jenggot',title:'Hukum Memelihara Jenggot',cari:'hukum jenggot',
+ kw:['jenggot','janggut','cukur','kumis','memelihara'],
+ short:'Memelihara jenggot hukumnya wajib menurut pendapat yang kuat, karena perintah Nabi ﷺ yang jelas.',
+ dalil:[
+  {t:'h',ar:'خَالِفُوا الْمُشْرِكِينَ وَفِّرُوا اللِّحَى وَأَحْفُوا الشَّوَارِبَ',id:'"Selisihilah orang-orang musyrik, biarkanlah jenggot dan pangkaslah kumis."',ref:'HR. Al-Bukhari no. 5892 dan Muslim no. 259'}],
+ rinci:['Hukum asal perintah adalah wajib selama tidak ada dalil yang memalingkannya.','Mencukur jenggot adalah maksiat yang tetap tidak mengeluarkan pelakunya dari Islam, dan ia wajib bertaubat serta tetap kita bimbing dengan lembut.'],
+ khilaf:'Sebagian ulama memandangnya sunnah muakkadah. Tanyakan kepada ustadz untuk rincian panjang dan bentuknya.',
+ buku:['Fathul Bari (Ibnu Hajar)']},
+
+{id:'isbal',title:'Isbal (Celana di Bawah Mata Kaki)',cari:'isbal celana',
+ kw:['isbal','cingkrang','celana','sarung','mata kaki','menjulurkan'],
+ short:'Menurunkan pakaian di bawah mata kaki bagi laki-laki adalah terlarang. Jika karena sombong, ancamannya lebih keras.',
+ dalil:[
+  {t:'h',id:'"Apa yang di bawah kedua mata kaki dari sarung, maka (tempatnya) di neraka."',ref:'HR. Al-Bukhari no. 5787'},
+  {t:'h',id:'"Allah tidak akan melihat kepada orang yang menyeret pakaiannya karena sombong."',ref:'HR. Al-Bukhari no. 5783 dan Muslim no. 2085'}],
+ rinci:['Sebagian ulama membedakan: dengan sombong hukumnya lebih berat, tanpa sombong tetap terlarang.','Batas pakaian laki-laki: hingga pertengahan betis, boleh sampai di atas mata kaki.'],
+ khilaf:'Sebagian ulama memakruhkan jika tanpa kesombongan. Karena ancamannya keras, yang aman adalah tetap di atas mata kaki.',
+ buku:['Fathul Bari (Ibnu Hajar)']},
+
+{id:'riba',title:'Bunga Bank dan Riba',cari:'riba bunga bank',
+ kw:['riba','bunga','bank','kredit','pinjaman','utang','hutang'],
+ short:'Riba haram berdasarkan Al-Qur\'an, sunnah, dan ijma\'. Bunga pinjaman yang disyaratkan (tambahan karena waktu) termasuk riba.',
+ dalil:[
+  {t:'q',ar:'وَأَحَلَّ اللَّهُ الْبَيْعَ وَحَرَّمَ الرِّبَا',id:'"Allah menghalalkan jual beli dan mengharamkan riba."',ref:'QS. Al-Baqarah: 275'},
+  {t:'q',id:'"Wahai orang-orang yang beriman, bertakwalah kepada Allah dan tinggalkan sisa riba jika kamu orang beriman."',ref:'QS. Al-Baqarah: 278-279'},
+  {t:'h',id:'Jabir: "Rasulullah ﷺ melaknat pemakan riba, pemberinya, penulisnya, dan dua saksinya." Beliau bersabda: "Mereka semua sama."',ref:'HR. Muslim no. 1598'}],
+ rinci:['Setiap pinjaman yang menarik manfaat tambahan adalah riba, kaidah yang dinukil Ibnul Mundzir sebagai ijma\' ulama.','Solusinya: jual beli yang halal, kerja sama bagi hasil yang sesuai syariat, atau pinjaman tanpa tambahan.'],
+ khilaf:'Penilaian rinci terhadap produk bank tertentu membutuhkan fatwa para ulama dan lembaga fatwa yang terpercaya.',
+ buku:['Al-Ijma\' (Ibnul Mundzir)','Al-Mughni (Ibnu Qudamah)']},
+
+{id:'wudhu',title:'Pembatal Wudhu',cari:'pembatal wudhu',
+ kw:['wudhu','pembatal','batal','buang angin','kentut','tidur','daging unta'],
+ short:'Pembatal wudhu yang disepakati: keluar sesuatu dari dua jalan (kencing, buang air, angin), tidur lelap, dan hilang akal. Dalam sunnah juga ada: makan daging unta.',
+ dalil:[
+  {t:'h',id:'"Allah tidak menerima shalat salah seorang di antara kalian jika ia berhadats hingga ia berwudhu."',ref:'HR. Al-Bukhari no. 135 dan Muslim no. 225'},
+  {t:'h',id:'Seseorang bertanya: "Apakah kami berwudhu karena (makan) daging unta?" Beliau menjawab: "Ya, berwudhulah karena daging unta."',ref:'HR. Muslim no. 360'}],
+ rinci:['Menyentuh kemaluan dengan syahwat/langsung ada hadits yang dishahihkan sebagian ulama (Abu Dawud no. 181, At-Tirmidzi no. 82).','Menyentuh wanita tanpa syahwat: pendapat yang kuat tidak membatalkan (hadits Aisyah, Abu Dawud no. 178).'],
+ khilaf:'Dalam beberapa hal (menyentuh wanita, menyentuh kemaluan) ada perbedaan pendapat yang kuat. Rujuk ustadz sesuai mazhab setempat.',
+ buku:['Shahih Fiqh Sunnah','Taisirul Allam']},
+
+{id:'jamak',title:'Shalat Jamak dan Qashar Musafir',cari:'shalat jamak qashar safar',
+ kw:['jamak','qashar','qasar','musafir','safar','perjalanan'],
+ short:'Orang yang safar boleh mengqashar (meringkas 4 rakaat menjadi 2) dan menjamak shalat. Qashar adalah keringanan dan sedekah dari Allah.',
+ dalil:[
+  {t:'q',id:'"Apabila kamu bepergian di muka bumi, maka tidak mengapa kamu mengqashar shalat..."',ref:'QS. An-Nisa: 101'},
+  {t:'h',id:'Umar bertanya tentang qashar: Nabi ﷺ bersabda: "Itu adalah sedekah yang Allah berikan kepada kalian, maka terimalah sedekah-Nya."',ref:'HR. Muslim no. 686'}],
+ rinci:['Qashar hanya untuk shalat 4 rakaat (Zhuhur, Ashar, Isya).','Jamak boleh saat safar ketika ada kebutuhan, dan tidak mesti sepanjang safar.'],
+ khilaf:'Jarak minimal safar tidak ditetapkan dalam nash; ulama berbeda (sebagian menyebut sekitar 80-an km). Rujuk fatwa ulama setempat untuk jarak dan lama menetap.',
+ buku:['Zadul Ma\'ad (Ibnul Qayyim)']},
+
+{id:'puasa',title:'Puasa Sunnah (Senin-Kamis & Syawal)',cari:'puasa sunnah',
+ kw:['puasa','senin','kamis','syawal','sunnah puasa','arafah'],
+ short:'Di antara puasa sunnah: Senin-Kamis dan enam hari di bulan Syawal.',
+ dalil:[
+  {t:'h',id:'Nabi ﷺ ditanya tentang puasa hari Senin, beliau bersabda: "Itu hari aku dilahirkan dan hari wahyu diturunkan kepadaku."',ref:'HR. Muslim no. 1162'},
+  {t:'h',id:'"Barangsiapa berpuasa Ramadhan lalu mengikutinya dengan enam hari di bulan Syawal, maka seperti puasa setahun penuh."',ref:'HR. Muslim no. 1164'}],
+ rinci:['Puasa Senin-Kamis: amal diangkat pada hari itu dan beliau suka amalnya diangkat saat berpuasa (HR. At-Tirmidzi no. 747, dinilai shahih oleh Al-Albani).','Enam hari Syawal boleh berturut atau terpisah dalam bulan Syawal.'],
+ khilaf:'Sebagian ulama menganjurkan mendahulukan qadha Ramadhan sebelum puasa Syawal. Tanyakan sesuai kondisi Anda.',
+ buku:['Riyadhush Shalihin (An-Nawawi)']},
+
+{id:'zakatfitrah',title:'Zakat Fitrah',cari:'zakat fitrah',
+ kw:['zakat','fitrah','fitri','ramadhan','idul fitri','sha'],
+ short:'Zakat fitrah wajib atas setiap muslim, besarnya satu sha\' makanan pokok, dan paling afdhal ditunaikan sebelum shalat Id.',
+ dalil:[
+  {t:'h',id:'Ibnu Umar: "Rasulullah ﷺ mewajibkan zakat fitrah satu sha\' kurma atau satu sha\' gandum atas hamba sahaya, orang merdeka, laki-laki, perempuan, anak kecil, dan dewasa dari kaum muslimin."',ref:'HR. Al-Bukhari no. 1503 dan Muslim no. 984'},
+  {t:'h',id:'Beliau memerintahkan agar zakat fitrah ditunaikan sebelum orang-orang keluar menuju shalat Id.',ref:'HR. Al-Bukhari no. 1509 dan Muslim no. 986'}],
+ rinci:['Satu sha\' kira-kira 2,5-3 kg beras (para ulama berbeda sedikit dalam konversinya).','Boleh ditunaikan 1-2 hari sebelum Id sebagaimana para sahabat.'],
+ khilaf:'Menunaikan dengan uang diperbolehkan sebagian ulama; menurut pendapat kuat dalam kalangan sunnah, makanan pokok lebih selamat.',
+ buku:['Fathul Bari (Ibnu Hajar)']},
+
+{id:'rawatib',title:'Shalat Sunnah Rawatib',cari:'shalat rawatib',
+ kw:['rawatib','sunnah rawatib','qabliyah','badiyah','sunnah shalat'],
+ short:'Shalat rawatib 12 rakaat sehari semalam, dan Allah menjanjikan rumah di surga bagi yang menjaganya.',
+ dalil:[
+  {t:'h',id:'Ummu Habibah: "Barangsiapa shalat dua belas rakaat dalam sehari semalam, dibangunkan baginya rumah di surga."',ref:'HR. Muslim no. 728'}],
+ rinci:['Rinciannya (HR. At-Tirmidzi no. 415, shahih): 4 rakaat sebelum Zhuhur dan 2 sesudahnya, 2 sesudah Maghrib, 2 sesudah Isya, dan 2 sebelum Subuh.','Dua rakaat sebelum Subuh adalah yang paling ditekankan.'],
+ khilaf:'Tidak ada khilaf berarti pada pokoknya; perbedaan hanya pada rincian jumlah sebelum Zhuhur dan Ashar.',
+ buku:['Riyadhush Shalihin']},
+
+{id:'jamaah',title:'Shalat Berjamaah di Masjid bagi Laki-laki',cari:'shalat berjamaah masjid',
+ kw:['jamaah','berjamaah','masjid','jamaah shalat','wajib jamaah'],
+ short:'Menurut pendapat yang kuat, shalat berjamaah di masjid wajib bagi laki-laki yang mampu, dan pahalanya berlipat.',
+ dalil:[
+  {t:'h',id:'"Shalat berjamaah lebih utama 27 derajat daripada shalat sendirian."',ref:'HR. Al-Bukhari no. 645 dan Muslim no. 650'},
+  {t:'h',id:'Seorang buta meminta keringanan untuk shalat di rumah. Nabi ﷺ bertanya: "Apakah engkau mendengar adzan?" Ia menjawab: "Ya." Beliau bersabda: "Maka penuhilah."',ref:'HR. Muslim no. 653'}],
+ rinci:['Jika orang buta yang tidak punya penuntun saja diperintahkan, maka yang sehat lebih utama.','Uzur yang dibenarkan: sakit, hujan deras, ketakutan, dan semisalnya.'],
+ khilaf:'Sebagian ulama menyatakan fardhu kifayah atau sunnah muakkadah. Namun pendapat wajib lebih kuat dalilnya.',
+ buku:['Asy-Syarhul Mumti\' (Ibnu Utsaimin)']},
+
+{id:'tahiyat',title:'Shalat Tahiyatul Masjid',cari:'tahiyatul masjid',
+ kw:['tahiyatul','tahiyat masjid','duduk masjid','masuk masjid'],
+ short:'Disunnahkan shalat dua rakaat saat masuk masjid sebelum duduk.',
+ dalil:[
+  {t:'h',ar:'إِذَا دَخَلَ أَحَدُكُمُ الْمَسْجِدَ فَلَا يَجْلِسْ حَتَّى يُصَلِّيَ رَكْعَتَيْنِ',id:'"Apabila salah seorang di antara kalian masuk masjid, maka janganlah duduk sebelum shalat dua rakaat."',ref:'HR. Al-Bukhari no. 444 dan Muslim no. 714'}],
+ rinci:['Boleh dikerjakan kapan pun masuk masjid, bahkan saat khutbah Jumat (HR. Muslim no. 875), tetapi diringkas.','Cukup bagi yang langsung shalat wajib atau rawatib setelah masuk.'],
+ khilaf:'Tidak ada khilaf berarti. Dikerjakan kecuali di waktu yang dilarang menurut sebagian ulama.',
+ buku:['Riyadhush Shalihin']},
+
+{id:'tarawih',title:'Jumlah Rakaat Tarawih',cari:'rakaat tarawih',
+ kw:['tarawih','taraweh','terawih','11 rakaat','23 rakaat','qiyamullail','qiyam ramadhan'],
+ short:'Yang paling utama mengikuti contoh Nabi ﷺ, yaitu 11 rakaat. Namun jumlah lain tidak boleh saling mengingkari karena Nabi ﷺ tidak membatasi.',
+ dalil:[
+  {t:'h',id:'Aisyah: "Rasulullah ﷺ tidak pernah menambah, baik di bulan Ramadhan maupun di luarnya, lebih dari sebelas rakaat."',ref:'HR. Al-Bukhari no. 1147 dan Muslim no. 738'},
+  {t:'h',id:'"Shalat malam itu dua rakaat dua rakaat."',ref:'HR. Al-Bukhari no. 990 dan Muslim no. 749'}],
+ rinci:['Salam setiap dua rakaat adalah cara yang sesuai hadits Ibnu Umar.','Menghidupkan Ramadhan dengan iman dan mengharap pahala menghapus dosa yang lalu (HR. Al-Bukhari no. 37, Muslim no. 759).'],
+ khilaf:'Umar mengumpulkan jamaah dengan 20-an rakaat di zamannya, sehingga ulama berbeda. Jangan saling mencela antara 11 dan 23 rakaat.',
+ buku:['Shalat At-Tarawih (Al-Albani)']},
+
+{id:'rokok',title:'Hukum Merokok',cari:'hukum merokok',
+ kw:['rokok','merokok','tembakau','vape','vapor'],
+ short:'Mayoritas ulama kontemporer, termasuk Lajnah Da\'imah, memfatwakan rokok haram karena mudharatnya jelas dan termasuk khabaits (hal yang buruk).',
+ dalil:[
+  {t:'q',id:'"...Dan Dia (Nabi) menghalalkan bagi mereka yang baik dan mengharamkan bagi mereka yang buruk."',ref:'QS. Al-A\'raf: 157'},
+  {t:'h',ar:'لَا ضَرَرَ وَلَا ضِرَارَ',id:'"Tidak boleh membahayakan diri sendiri dan tidak boleh membahayakan orang lain."',ref:'HR. Ibnu Majah no. 2340; dishahihkan Al-Albani (Irwa\'ul Ghalil no. 896)'}],
+ rinci:['Rokok membahayakan kesehatan, menyia-nyiakan harta, dan mengganggu orang di sekitar.','Bagi perokok: tinggalkan bertahap tetapi bersungguh-sungguh; Allah mudahkan bagi yang bertakwa.'],
+ khilaf:'Ada ulama terdahulu yang berpendapat makruh sebelum jelasnya bahaya. Setelah terbukti mudharatnya, fatwa ulama sekarang mengharamkan.',
+ buku:['Fatawa Lajnah Da\'imah']}
+];
+
+/* ===== LOGIKA ===== */
+const $=id=>document.getElementById(id);
+const norm=s=>s.toLowerCase().replace(/[^a-z0-9\s']/g,' ').replace(/\s+/g,' ').trim();
+const esc=s=>s.replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+
+function search(q){
+  const n=norm(q); if(!n) return [];
+  const words=n.split(' ').filter(w=>w.length>2);
+  return DB.map(e=>{
+    let s=0;
+    e.kw.forEach(k=>{ if(n.includes(norm(k))) s+=3; });
+    norm(e.title).split(' ').forEach(w=>{ if(w.length>3 && words.includes(w)) s+=1; });
+    return {e,s};
+  }).filter(x=>x.s>0).sort((a,b)=>b.s-a.s);
+}
+
+function links(term){
+  const t=encodeURIComponent(term);
+  return `<a target="_blank" rel="noopener" href="https://rumaysho.com/?s=${t}">Rumaysho.com</a>
+  <a target="_blank" rel="noopener" href="https://muslim.or.id/?s=${t}">Muslim.or.id</a>
+  <a target="_blank" rel="noopener" href="https://www.google.com/search?q=site:almanhaj.or.id+${t}">Almanhaj.or.id</a>
+  <a target="_blank" rel="noopener" href="https://www.google.com/search?q=site:muslimah.or.id+${t}">Muslimah.or.id</a>
+  <a target="_blank" rel="noopener" href="https://www.google.com/search?q=site:konsultasisyariah.com+${t}">Konsultasi Syariah</a>`;
+}
+
+function render(res,q){
+  const box=$('answer');
+  if(!res.length){
+    box.innerHTML=`<div class="none"><h2>🤲 Mohon maaf, belum ada jawaban terverifikasi</h2>
+    <p>Pertanyaan "<b>${esc(q)}</b>" belum ada di basis data kami, dan kami tidak ingin menjawab tanpa dalil yang jelas dan sumber yang dapat dipertanggungjawabkan.<br>Silakan cari di rujukan-rujukan terpercaya berikut, atau tanyakan kepada ustadz ahlus sunnah di sekitar Anda:</p>
+    <div class="links" style="justify-content:center">${links(q)}</div></div>`;
+  }else{
+    const e=res[0].e;
+    const dal=e.dalil.map(d=>`<div class="dalil"><span class="tag ${d.t==='h'?'h':''}">${d.t==='h'?'HADITS':'AL-QUR\'AN'}</span>${d.ar?`<div class="ar">${d.ar}</div>`:''}<div class="tr">${esc(d.id)}</div><div class="ref">📚 ${esc(d.ref)}</div></div>`).join('');
+    const rel=res.slice(1,4).map(x=>`<button class="chip" data-id="${x.e.id}">${esc(x.e.title)}</button>`).join('');
+    box.innerHTML=`<div class="ans">
+      <div class="ans-h"><small>Jawaban</small><h2>${esc(e.title)}</h2></div>
+      <div class="ans-b">
+        <div class="short">${e.short}</div>
+        <div class="lbl">📖 Dalil</div>${dal}
+        <div class="lbl">💡 Penjelasan</div><ul class="pts">${e.rinci.map(r=>`<li>${esc(r)}</li>`).join('')}</ul>
+        <div class="lbl">⚖️ Perbedaan Pendapat & Adab</div><div class="khilaf">${esc(e.khilaf)}</div>
+        <div class="lbl">🔎 Rujukan Lanjutan</div>
+        <p style="font-size:.85rem;margin-bottom:8px">Kitab: ${e.buku.map(esc).join(' • ')}</p>
+        <div class="links">${links(e.cari)}</div>
+        ${rel?`<div class="rel"><div class="lbl">Pertanyaan Terkait</div><div class="chips">${rel}</div></div>`:''}
+        <div class="warn">⚠️ Ini rujukan awal, bukan fatwa. Cek ulang nomor hadits dan penilaiannya di kitab asli atau Dorar.net. Wallahu a'lam bish shawab.</div>
+      </div></div>`;
+  }
+  box.querySelectorAll('[data-id]').forEach(b=>b.onclick=()=>showId(b.dataset.id));
+  box.scrollIntoView({behavior:'smooth',block:'start'});
+}
+function showId(id){const e=DB.find(x=>x.id===id);$('q').value=e.title;render([{e,s:99}],e.title)}
+function ask(force){
+  const q=$('q').value.trim();if(!q)return $('q').focus();
+  const res=search(q);
+  if(!force && res.length){
+    render(res,q);
+    const tmp=document.createElement('div');tmp.innerHTML=res[0].e.short;
+    history.push({role:'user',content:q},{role:'assistant',content:tmp.textContent});
+    if(history.length>12)history=history.slice(-12);
+  }else streamAI(q);
+}
+
+$('go').onclick=()=>ask(false);
+$('goai').onclick=()=>ask(true);
+$('q').addEventListener('keydown',e=>{if(e.key==='Enter')ask()});
+const sug=['qunut','tahlilan','niat','jenggot','riba','tarawih','musik','merokok'];
+$('chips').innerHTML=sug.map(s=>{const e=DB.find(x=>x.kw.includes(s));return `<button class="chip" data-id="${e.id}">${esc(e.title)}</button>`}).join('');
+$('chips').querySelectorAll('[data-id]').forEach(b=>b.onclick=()=>showId(b.dataset.id));
+$('topics').innerHTML=DB.map(e=>`<button class="topic" data-id="${e.id}">${esc(e.title)}</button>`).join('');
+$('topics').querySelectorAll('[data-id]').forEach(b=>b.onclick=()=>showId(b.dataset.id));
+
+/* ===== AI LIVE (streaming) ===== */
+let history=[];let busy=false;
+function mdToHtml(t){
+  const inl=s=>s.replace(/\*\*(.+?)\*\*/g,'<b>$1</b>').replace(/\*(.+?)\*/g,'<i>$1</i>');
+  let out='',inList=false;const close=()=>{if(inList){out+='</ul>';inList=false}};
+  for(const raw of esc(t).split('\n')){
+    const l=raw.trim();
+    if(!l){close();continue}
+    if(/[؀-ۿ]/.test(l)&&!/[A-Za-z]{4,}/.test(l)){close();out+='<div class="ar">'+l+'</div>';continue}
+    let m;
+    if(m=l.match(/^#{1,4}\s+(.*)/)){close();out+='<div class="lbl">'+inl(m[1])+'</div>';continue}
+    if(m=l.match(/^[-*•]\s+(.*)/)){if(!inList){out+='<ul class="pts">';inList=true}out+='<li>'+inl(m[1])+'</li>';continue}
+    if(m=l.match(/^&gt;\s?(.*)/)){close();out+='<div class="dalil">'+inl(m[1])+'</div>';continue}
+    close();out+='<p>'+inl(l)+'</p>';
+  }
+  close();return out;
+}
+async function streamAI(q){
+  if(busy)return;busy=true;
+  $('go').disabled=$('goai').disabled=true;
+  const box=$('answer');
+  box.innerHTML='<div class="ans"><div class="ans-h"><small>🤖 Dijawab AI</small><h2>'+esc(q)+'</h2></div><div class="ans-b">'+
+    '<div class="aiwarn">Jawaban ini disusun oleh AI dan <b>belum diverifikasi ulama</b>. Mohon cek ulang dalil dan nomor haditsnya pada kitab atau sumber di bawah.</div>'+
+    '<div id="aibody" class="aibody"><span class="dots">Sedang menyusun jawaban dari dalil...</span></div>'+
+    '<div class="lbl">🔎 Cek Rujukan</div><div class="links">'+links(q)+'</div>'+
+    '<div class="warn">⚠️ Ini rujukan awal, bukan fatwa. Untuk masalah pribadi, tanyakan kepada ustadz ahlus sunnah. Wallahu a\'lam.</div></div></div>';
+  box.scrollIntoView({behavior:'smooth',block:'start'});
+  const body=$('aibody');let text='';
+  try{
+    const r=await fetch('/api/ask',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({message:q,history:history.slice(-6)})});
+    if(!r.ok){const j=await r.json().catch(()=>({}));throw new Error(j.error||('Terjadi kesalahan ('+r.status+')'))}
+    const reader=r.body.getReader();const dec=new TextDecoder();let buf='';
+    while(true){
+      const {done,value}=await reader.read();if(done)break;
+      buf+=dec.decode(value,{stream:true});
+      let i;
+      while((i=buf.indexOf('\n\n'))>=0){
+        const ev=buf.slice(0,i);buf=buf.slice(i+2);
+        if(!ev.startsWith('data:'))continue;
+        const d=ev.slice(5).trim();if(d==='[DONE]')continue;
+        let j;try{j=JSON.parse(d)}catch(e){continue}
+        if(j.error)throw new Error(j.error);
+        if(j.t){text+=j.t;body.innerHTML=mdToHtml(text)}
+      }
+    }
+    if(text.trim()){history.push({role:'user',content:q},{role:'assistant',content:text});if(history.length>12)history=history.slice(-12)}
+    else body.innerHTML='<p>Tidak ada jawaban yang diterima. Silakan coba lagi.</p>';
+  }catch(e){
+    body.innerHTML='<p style="color:var(--danger)">⚠️ '+esc(e.message||'Gagal terhubung ke server.')+'</p>';
+  }
+  busy=false;$('go').disabled=$('goai').disabled=false;
+}
+</script>
+</body>
+</html>
