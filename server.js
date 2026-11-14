@@ -110,9 +110,13 @@ async function callGeminiStream(url, payload, signal) {
       signal
     });
 
-    // Jika parameter thinkingConfig tidak didukung versi model, ulangi langsung tanpa thinkingConfig
+    // Jika parameter thinkingConfig ditolak model, turunkan level atau hapus otomatis
     if (res.status === 400 && bodyObj.generationConfig?.thinkingConfig) {
-      delete bodyObj.generationConfig.thinkingConfig;
+      if (bodyObj.generationConfig.thinkingConfig.thinkingLevel === 'MINIMAL') {
+        bodyObj.generationConfig.thinkingConfig.thinkingLevel = 'LOW';
+      } else {
+        delete bodyObj.generationConfig.thinkingConfig;
+      }
       percobaan--;
       continue;
     }
@@ -149,7 +153,7 @@ app.post('/api/ask', limiter, async (req, res) => {
       generationConfig: {
         maxOutputTokens: 4096,
         temperature: 0.3,
-        thinkingConfig: { thinkingLevel: 'LOW' }
+        thinkingConfig: { thinkingLevel: 'MINIMAL' }
       }
     }, ac.signal);
 
@@ -169,6 +173,7 @@ app.post('/api/ask', limiter, async (req, res) => {
       Connection: 'keep-alive',
       'X-Accel-Buffering': 'no'
     });
+    res.flushHeaders();
 
     const reader = upstream.body.getReader();
     const dec = new TextDecoder();
