@@ -6,7 +6,7 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 /* ====== KONFIGURASI (lewat environment variable) ====== */
 const API_KEY = process.env.GEMINI_API_KEY;
-const MODEL = process.env.MODEL || 'gemini-1.5-flash';
+const MODEL = process.env.MODEL || 'gemini-3.8-flash';
 const GEMINI_BASE = process.env.GEMINI_BASE || 'https://generativelanguage.googleapis.com/v1beta';
 const PORT = Number(process.env.PORT || 3000);
 const RATE_LIMIT = Number(process.env.RATE_LIMIT || 10);          // maks pertanyaan per IP per jendela
@@ -20,7 +20,7 @@ if (!API_KEY) {
 }
 
 /* ====== PROMPT SISTEM: aturan ketat manhaj dan sumber ====== */
-const SYSTEM = `Kamu adalah asisten tanya jawab fiqh untuk website "Tanya Fiqh Sunnah". Kamu menjawab dengan gaya seorang penuntut ilmu yang berpegang pada Al-Qur'an dan Sunnah yang shahih menurut pemahaman Salafush Shalih (manhaj salaf). Jawablah dalam bahasa Indonesia yang jelas, sopan, dan mudah dipahami orang awam.
+const SYSTEM = `Kamu adalah asisten tanya jawab fiqh untuk website "Tanya Fiqh Sunnah". Kamu menjawab dengan gaya seorang penuntut ilmu yang berpegang pada Al-Qur'an dan Sunnah yang shahih menurut pemahaman Salafush Shalih (manhaj salaf). Jawablah dalam bahasa Indonesia yang jelas, sopan, padat, dan mudah dipahami orang awam.
 
 ATURAN SUMBER (WAJIB):
 1. Rujukan utama hanya: Al-Qur'an, hadits yang shahih atau hasan (sebagaimana dinilai ulama hadits seperti Al-Bukhari, Muslim, Al-Albani, Ibnu Hajar), ijma' ulama, serta pemahaman sahabat dan salafush shalih. Hadits dhaif, maudhu', atau tanpa sanad jelas TIDAK boleh dijadikan dalil. Jika perlu menyebutnya, hanya untuk menjelaskan bahwa ia lemah dan tidak dipakai.
@@ -28,15 +28,15 @@ ATURAN SUMBER (WAJIB):
 3. JANGAN PERNAH mengarang ayat, hadits, nomor hadits, derajat hadits, atau kutipan ulama. Jika kamu tidak yakin dengan nomor hadits, tulis nama kitab dan bab saja, atau tulis "(nomor perlu dicek ulang)". Teks Arab hanya ditulis jika kamu benar-benar yakin; jika ragu, berikan terjemahan dan rujukannya saja.
 4. Jika pertanyaan tidak memiliki dalil yang jelas atau kamu tidak yakin, jangan menebak. Katakan dengan jujur: "Mohon maaf, saya belum menemukan rujukan yang cukup kuat untuk menjawab ini", lalu arahkan agar bertanya kepada ustadz ahlus sunnah atau mencari di sumber rujukan di atas.
 
-FORMAT JAWABAN (gunakan persis urutan ini, dengan judul Markdown):
+FORMAT JAWABAN (gunakan persis urutan ini, dengan judul Markdown, buat ringkas dan langsung pada intinya):
 ## Jawaban Ringkas
 (1-3 kalimat)
 ## Dalil
-(Setiap dalil dalam satu poin: terjemahan, lalu rujukan, misalnya "HR. Al-Bukhari no. ..." atau "QS. Al-Baqarah: 275". Sebutkan derajat hadits bila diketahui.)
+(Pilih 2-4 dalil paling kuat. Setiap dalil dalam satu poin: terjemahan, lalu rujukan, misalnya "HR. Al-Bukhari no. ..." atau "QS. Al-Baqarah: 275". Sebutkan derajat hadits bila diketahui.)
 ## Penjelasan
-(Poin-poin singkat pemahaman ulama.)
+(3-4 poin singkat dan padat pemahaman ulama.)
 ## Perbedaan Pendapat
-(Jika ada khilaf yang mu'tabar, jelaskan singkat dan adabnya. Jika tidak ada, tulis bahwa tidak ada khilaf yang berarti.)
+(Jika ada khilaf yang mu'tabar, jelaskan singkat dalam 1 paragraf dan adabnya. Jika tidak ada, tulis bahwa tidak ada khilaf yang berarti.)
 ## Rujukan
 (Daftar kitab/situs yang relevan.)
 Tutup dengan satu kalimat: "Wallahu a'lam bish shawab."
@@ -97,6 +97,40 @@ function cleanHistory(h) {
   return out;
 }
 
+/* Helper pemanggil Gemini API dengan auto-retry (503/429) & fallback thinkingConfig */
+async function callGeminiStream(url, payload, signal) {
+  const maksCoba = 3;
+  const bodyObj = structuredClone(payload);
+
+  for (let percobaan = 1; percobaan <= maksCoba; percobaan++) {
+    const res = await fetch(url, {
+      method: 'POST',
+      headers: { 'content-type': 'application/json', 'x-goog-api-key': API_KEY },
+      body: JSON.stringify(bodyObj),
+      signal
+    });
+
+    // Jika parameter thinkingConfig tidak didukung versi model, ulangi langsung tanpa thinkingConfig
+    if (res.status === 400 && bodyObj.generationConfig?.thinkingConfig) {
+      delete bodyObj.generationConfig.thinkingConfig;
+      percobaan--;
+      continue;
+    }
+
+    // Jika sukses atau bukan error antrean server (503) / rate limit (429), langsung kembalikan
+    if (res.ok || (res.status !== 503 && res.status !== 429)) {
+      return res;
+    }
+
+    // Tunggu sebentar lalu coba ulang otomatis saat server Google padat
+    if (percobaan < maksCoba) {
+      await new Promise(resolve => setTimeout(resolve, 1500 * percobaan));
+    } else {
+      return res;
+    }
+  }
+}
+
 app.post('/api/ask', limiter, async (req, res) => {
   const message = typeof req.body?.message === 'string' ? req.body.message.trim() : '';
   if (!message) return res.status(400).json({ error: 'Pertanyaan kosong.' });
@@ -109,22 +143,23 @@ app.post('/api/ask', limiter, async (req, res) => {
 
   try {
     const url = `${GEMINI_BASE}/models/${encodeURIComponent(MODEL)}:streamGenerateContent?alt=sse`;
-    const upstream = await fetch(url, {
-      method: 'POST',
-      headers: { 'content-type': 'application/json', 'x-goog-api-key': API_KEY },
-      body: JSON.stringify({
-        systemInstruction: { parts: [{ text: SYSTEM }] },
-        contents,
-        generationConfig: { maxOutputTokens: 4096, temperature: 0.3 }
-      }),
-      signal: ac.signal
-    });
+    const upstream = await callGeminiStream(url, {
+      systemInstruction: { parts: [{ text: SYSTEM }] },
+      contents,
+      generationConfig: {
+        maxOutputTokens: 4096,
+        temperature: 0.3,
+        thinkingConfig: { thinkingLevel: 'LOW' }
+      }
+    }, ac.signal);
 
     if (!upstream.ok) {
       console.error('Gemini API error', upstream.status, await upstream.text().catch(() => ''));
       const msg = upstream.status === 429
         ? 'Layanan AI sedang ramai atau kuota gratis habis. Silakan coba lagi beberapa saat lagi.'
-        : 'Layanan AI sedang bermasalah. Silakan coba beberapa saat lagi.';
+        : upstream.status === 503
+          ? 'Server AI Google sedang padat antrean. Silakan klik Tanya AI sekali lagi.'
+          : 'Layanan AI sedang bermasalah. Silakan coba beberapa saat lagi.';
       return res.status(upstream.status === 429 ? 429 : 502).json({ error: msg });
     }
 
